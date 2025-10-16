@@ -6,8 +6,7 @@
 		{
 			"label": "compile",
 			"type": "shell",
-			"command": "g++",
-			"args": ["-std=c++17", "-o", "${fileBasenameNoExtension}", "${file}"],
+			"command": "cd ${fileDirname} && g++ -std=c++17 -o ${fileBasenameNoExtension} ${file}",
 			"group": {
 				"kind": "build",
 				"isDefault": false
@@ -16,7 +15,7 @@
 		{
 			"label": "compile and run",
 			"type": "shell",
-			"command": "g++ -std=c++17 -o ${fileBasenameNoExtension} ${file} && ./${fileBasenameNoExtension} < input.txt > output.txt",
+			"command": "cd ${fileDirname} && g++ -std=c++17 -o ${fileBasenameNoExtension} ${file} && ./${fileBasenameNoExtension} < input.txt > output.txt",
 			"group": {
 				"kind": "build",
 				"isDefault": true
@@ -25,7 +24,7 @@
 		{
 			"label": "run with files",
 			"type": "shell",
-			"command": "./${fileBasenameNoExtension} < input.txt > output.txt",
+			"command": "cd ${fileDirname} && ./${fileBasenameNoExtension} < input.txt > output.txt",
 			"group": {
 				"kind": "test",
 				"isDefault": false
