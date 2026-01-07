@@ -51,6 +51,36 @@ int countSymmetricIntegers(int low, int high) {
 	return numberOfSymmetric;
 }
 
+int countSymmetricIntegers(int low, int high) {
+	int numberOfSymmInt = 0;
+
+	while (low <= high) {
+		string currentStr = to_string(low);
+		int strLength = currentStr.length();
+		if (strLength % 2 != 0) {
+			low++;
+			continue;
+		}
+
+		int sum1 = 0;
+		int sum2 = 0;
+		for (int i = 0, j = strLength / 2; i < strLength / 2;) {
+			sum1 += currentStr[i];
+			sum2 += currentStr[j];
+			j++;
+			i++;
+		}
+
+		if (sum1 == sum2) {
+			numberOfSymmInt++;
+		}
+
+		low++;
+	}
+
+	return numberOfSymmInt;
+}
+
 int main() {
 	cout << countSymmetricIntegers(1, 100) << endl;
 
