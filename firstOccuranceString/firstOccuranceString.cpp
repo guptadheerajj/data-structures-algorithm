@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// find first occurance of needle in heystack
-// int strStr(string haystack, string needle) {
-// 	int index = 0;
-// 	for (int i = 0, j = 0; i < haystack.size() && j < needle.size(); i++) {
-// 		if (haystack[i] == needle[j]) {
-// 			j++;
-// 		} else {
-// 			j = 0;
-// 			index = i + 1;
-// 		}
-// 	}
+find first occurance of needle in heystack
+int strStr(string haystack, string needle) {
+	int index = 0;
+	for (int i = 0, j = 0; i < haystack.size() && j < needle.size(); i++) {
+		if (haystack[i] == needle[j]) {
+			j++;
+		} else {
+			j = 0;
+			index = i + 1;
+		}
+	}
 
-// 	if ((index + needle.size() - 1) >= haystack.size()) {
-// 		index = -1;
-// 	}
+	if ((index + needle.size() - 1) >= haystack.size()) {
+		index = -1;
+	}
 
-// 	return index;
-// }
+	return index;
+}
 
 int strStr(string haystack, string needle) {
 	int index = -1;
@@ -28,7 +28,6 @@ int strStr(string haystack, string needle) {
 			break;
 		}
 	}
-
 	return index;
 }
 
