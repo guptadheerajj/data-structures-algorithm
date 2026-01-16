@@ -2,6 +2,21 @@
 
 using namespace std;
 
+// brute force approach
+int removeDuplicates(vector<int>& nums) {
+	set<int> st;
+	for (int i = 0; i < nums.size(); i++) {
+		st.insert(nums[i]);
+	}
+
+	int index = 0;
+	for (auto it : st) {
+		nums[index] = it;
+		index++;
+	}
+
+	return st.size();
+}
 // first approach -> 4ms
 // int removeDuplicates(vector<int>& nums) {
 // 	int shift = 0;
@@ -22,21 +37,36 @@ using namespace std;
 // }
 
 // 0 ms
-int removeDuplicates(vector<int>& nums) {
-	int shift = 0;
-	int current = nums[0];
-	int k = 1;
-	for (int i = 1; i < nums.size(); i++) {
-		if (current == nums[i]) {
-			shift++;
-			continue;
-		}
-		k++;
-		current = nums[i];
-		nums[i - shift] = nums[i];
-	}
-	return k;
-}
+// int removeDuplicates(vector<int>& nums) {
+// 	int shift = 0;
+// 	int current = nums[0];
+// 	int k = 1;
+// 	for (int i = 1; i < nums.size(); i++) {
+// 		if (current == nums[i]) {
+// 			shift++;
+// 			continue;
+// 		}
+// 		k++;
+// 		current = nums[i];
+// 		nums[i - shift] = nums[i];
+// 	}
+// 	return k;
+// }
+
+// best approach
+// int removeDuplicates(vector<int>& nums) {
+// 	int result = 1;
+// 	int size = nums.size();
+
+// 	for (int i = 1; i < size; i++) {
+// 		if (nums[result - 1] != nums[i]) {
+// 			nums[result] = nums[i];
+// 			result++;
+// 		}
+// 	}
+
+// 	return result;
+// }
 
 int main() {
 	// Test case 1: Array with duplicates
