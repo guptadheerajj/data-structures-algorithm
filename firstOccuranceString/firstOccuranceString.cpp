@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-find first occurance of needle in heystack
+// find first occurance of needle in heystack
 int strStr(string haystack, string needle) {
 	int index = 0;
 	for (int i = 0, j = 0; i < haystack.size() && j < needle.size(); i++) {
