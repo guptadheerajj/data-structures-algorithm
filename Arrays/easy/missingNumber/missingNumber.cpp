@@ -22,33 +22,49 @@ using namespace std;
 // }
 
 // using sort function, time complexity: O(n + nlogn)
-int missingNumber(vector<int>& nums) {
-	int size = nums.size();
-	int missing = size;
-	sort(nums.begin(), nums.end());
+// int missingNumber(vector<int>& nums) {
+// 	int size = nums.size();
+// 	int missing = size;
+// 	sort(nums.begin(), nums.end());
 
-	for (int i = 0; i < size; i++) {
-		if (i != nums[i]) {
-			missing = i;
-			break;
-		}
-	}
+// 	for (int i = 0; i < size; i++) {
+// 		if (i != nums[i]) {
+// 			missing = i;
+// 			break;
+// 		}
+// 	}
 
-	return missing;
-}
+// 	return missing;
+// }
 
 // best approach -> Time complexity: O(n), space complexity: O(1)
 // in this approach the sum of all elements is used to find the missing number
-int missingNumber(vector<int>& nums) {
-	int n = nums.size();
-	int sum = n * (n + 1) / 2;
-	int actualSum = 0;
+// int missingNumber(vector<int>& nums) {
+// 	int n = nums.size();
+// 	int sum = n * (n + 1) / 2;
+// 	int actualSum = 0;
 
-	for (int i = 0; i < n; i++) {
-		actualSum += nums[i];
+// 	for (int i = 0; i < n; i++) {
+// 		actualSum += nums[i];
+// 	}
+
+// 	return sum - actualSum;
+// }
+
+// uisng hashing
+int missingNumber(vector<int>& nums) {
+	int size = nums.size();
+	vector<int> hashh(size + 1, 0);
+
+	for (int i = 0; i < size; i++) {
+		hashh[nums[i]] += 1;
 	}
 
-	return sum - actualSum;
+	for (int i = 0; i <= size; i++) {
+		if (hashh[i] == 0) {
+			return i;
+		}
+	}
 }
 
 ////////////////
