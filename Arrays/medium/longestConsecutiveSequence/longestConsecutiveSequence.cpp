@@ -2,32 +2,59 @@
 using namespace std;
 
 // Using sort TC: O(nlogn + n) SC: O(1)
+// int longestConsecutive(vector<int>& nums) {
+// 	int size = nums.size();
+// 	int res = 0;
+// 	int count = 0;
+
+// 	sort(nums.begin(), nums.end());
+
+// 	for (int i = 0; i < size; i++) {
+// 		if (i == 0) {
+// 			count++;
+// 			continue;
+// 		}
+// 		if (nums[i] == nums[i - 1]) {
+// 			continue;
+// 		}
+// 		if (nums[i] - nums[i - 1] > 1) {
+// 			if (count > res) {
+// 				res = count;
+// 			}
+// 			count = 0;
+// 		}
+// 		count++;
+// 	}
+
+// 	if (count > res) {
+// 		res = count;
+// 	}
+
+// 	return res;
+// }
+
+// TC: O(n) + O(2n) SC: O(n)
 int longestConsecutive(vector<int>& nums) {
 	int size = nums.size();
 	int res = 0;
-	int count = 0;
+	int count = 1;
 
-	sort(nums.begin(), nums.end());
+	unordered_set<int> st;
 
 	for (int i = 0; i < size; i++) {
-		if (i == 0) {
-			count++;
-			continue;
-		}
-		if (nums[i] == nums[i - 1]) {
-			continue;
-		}
-		if (nums[i] - nums[i - 1] > 1) {
-			if (count > res) {
-				res = count;
-			}
-			count = 0;
-		}
-		count++;
+		st.insert(nums[i]);
 	}
 
-	if (count > res) {
-		res = count;
+	for (auto it : st) {
+		int start = it;
+		if (st.find(start - 1) == st.end()) {
+			while (st.find(start + 1) != st.end()) {
+				count++;
+				start++;
+			}
+			res = max(res, count);
+		}
+		count = 1;
 	}
 
 	return res;
